@@ -1,6 +1,6 @@
 require('bulma');
 const hello = require("hellojs");
-const config = require("./config.js");
+const config = require("./config.js").GITHUB;
 
 hello.init({
     github: config.CLIENT_ID
