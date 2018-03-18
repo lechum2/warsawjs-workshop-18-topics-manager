@@ -13,12 +13,10 @@ $loginButton.addEventListener("click", event => {
         .then(userProfile => renderUserDetails(userProfile));
 });
 
-
-
 function renderUserDetails(userProfile) {
     const template = `
         <div class="navbar-item">
-            ${ userProfile.login }
+            ${ userProfile.login }&nbsp;
             <img src="${userProfile.avatar_url}" alt="${userProfile.name}"/>
         </div>
         `
