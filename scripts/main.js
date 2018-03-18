@@ -8,24 +8,23 @@ hello.init({
 const $loginButton = document.querySelector(".js-login-button-github");
 const $logoutButton = document.querySelector(".js-logout-button");
 
-if(hello('github').getAuthResponse()) {
-    hello('github').api('/me')
-        .then(userProfile => renderUserDetails(userProfile));
-}
+if(hello('github').getAuthResponse()) getAndRenderUser();
 
 $loginButton.addEventListener("click", event => {
     //event.preventDefault(); //if link, this should prevent page reload
     hello('github').login()
-        .then(() => {return hello('github').api('/me')})
-        .then(userProfile => renderUserDetails(userProfile));
+        .then(() => getAndRenderUser());
 });
 
 $logoutButton.addEventListener("click", event => {
     hello.logout('github')
-        .then(() => {
-            location.reload();
-        });
+        .then(() => location.reload());
 });
+
+function getAndRenderUser() {
+    hello('github').api('/me')
+        .then(userProfile => renderUserDetails(userProfile));
+}
 
 function renderUserDetails(userProfile) {
     const template = `
