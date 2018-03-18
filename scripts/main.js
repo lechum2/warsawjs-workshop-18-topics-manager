@@ -6,6 +6,7 @@ const config = require("./config.js").GITHUB;
 const $loginButton = document.querySelector(".js-login-button-github");
 const $logoutButton = document.querySelector(".js-logout-button");
 const $form = document.querySelector(".js-form-add-topic");
+const $topics = document.querySelector(".js-columns");
 
 const topics = new Set();
 
@@ -30,7 +31,9 @@ $form.addEventListener("submit", event => {
     event.preventDefault();
     const data = new FormData($form);
     const map = new Map(data.entries());
-    console.log(map);
+    topics.add(map);
+    console.log(topics);
+    renderTopics();
     $form.reset();
 });
 
@@ -46,4 +49,35 @@ function renderUserDetails(userProfile) {
         `
     const $navbar = document.querySelector(".js-user-placeholder");
     $navbar.innerHTML = template;
+}
+
+function renderTopic(topic) {
+    const template = `
+    <div class="column is-3">
+          <div class="card">
+              <header class="card-header">
+                  <p class="card-header-title">
+                      ${topic.get('topic')}
+                  </p>
+              </header>
+              <div class="card-content">
+                  <div class="content">
+                      ${topic.get('description')}
+                  </div>
+              </div>
+              <footer class="card-footer">
+                  <a href="#" class="card-footer-item">Zagłosuj</a>
+                  <a href="#" class="card-footer-item">Chcę być trenerem</a>
+              </footer>
+          </div>
+      </div>
+    `
+    $topics.innerHTML += template;
+}
+
+function renderTopics() {
+    $topics.innerHTML = "";
+    topics.forEach(element => {
+        renderTopic(element);
+    });
 }
