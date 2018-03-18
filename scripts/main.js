@@ -6,6 +6,8 @@ hello.init({
 });
 
 const $loginButton = document.querySelector(".js-login-button-github");
+const $logoutButton = document.querySelector(".js-logout-button");
+
 $loginButton.addEventListener("click", event => {
     //event.preventDefault(); //if link, this should prevent page reload
     hello('github').login()
@@ -13,14 +15,18 @@ $loginButton.addEventListener("click", event => {
         .then(userProfile => renderUserDetails(userProfile));
 });
 
+$logoutButton.addEventListener("click", event => {
+    hello.logout('github')
+        .then(() => {
+            location.reload();
+        });
+});
+
 function renderUserDetails(userProfile) {
     const template = `
-        <div class="navbar-item">
-            ${ userProfile.login }&nbsp;
-            <img src="${userProfile.avatar_url}" alt="${userProfile.name}"/>
-        </div>
+        ${ userProfile.login }&nbsp;
+        <img src="${userProfile.avatar_url}" alt="${userProfile.name}"/>
         `
-    const $navbar = document.querySelector(".js-userpanel");
-    $navbar.innerHTML += template;
-    //console.log($navbar);
+    const $navbar = document.querySelector(".js-user-placeholder");
+    $navbar.innerHTML = template;
 }
