@@ -1,0 +1,25 @@
+{
+  "name": "warsawjs-workshop-18-topics-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "parcel-bundler": "^1.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lechum2/warsawjs-workshop-18-topics-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lechum2/warsawjs-workshop-18-topics-manager/issues"
+  },
+  "homepage": "https://github.com/lechum2/warsawjs-workshop-18-topics-manager#readme"
+}
