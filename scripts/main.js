@@ -1,8 +1,9 @@
 require('bulma');
 const hello = require("hellojs");
+const config = require("./config.js");
 
 hello.init({
-    github: "d3ce163d91db690a5ccd"
+    github: config.CLIENT_ID
 });
 
 const $loginButton = document.querySelector(".js-login-button-github");
