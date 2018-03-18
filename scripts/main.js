@@ -8,6 +8,11 @@ hello.init({
 const $loginButton = document.querySelector(".js-login-button-github");
 const $logoutButton = document.querySelector(".js-logout-button");
 
+if(hello('github').getAuthResponse()) {
+    hello('github').api('/me')
+        .then(userProfile => renderUserDetails(userProfile));
+}
+
 $loginButton.addEventListener("click", event => {
     //event.preventDefault(); //if link, this should prevent page reload
     hello('github').login()
