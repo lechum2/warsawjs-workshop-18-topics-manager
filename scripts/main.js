@@ -1,13 +1,17 @@
+
 require('bulma');
 const hello = require("hellojs");
 const config = require("./config.js").GITHUB;
 
+const $loginButton = document.querySelector(".js-login-button-github");
+const $logoutButton = document.querySelector(".js-logout-button");
+const $form = document.querySelector(".js-form-add-topic");
+
+const topics = new Set();
+
 hello.init({
     github: config.CLIENT_ID
 });
-
-const $loginButton = document.querySelector(".js-login-button-github");
-const $logoutButton = document.querySelector(".js-logout-button");
 
 if(hello('github').getAuthResponse()) getAndRenderUser();
 
@@ -20,6 +24,14 @@ $loginButton.addEventListener("click", event => {
 $logoutButton.addEventListener("click", event => {
     hello.logout('github')
         .then(() => location.reload());
+});
+
+$form.addEventListener("submit", event => {
+    event.preventDefault();
+    const data = new FormData($form);
+    const map = new Map(data.entries());
+    console.log(map);
+    $form.reset();
 });
 
 function getAndRenderUser() {
